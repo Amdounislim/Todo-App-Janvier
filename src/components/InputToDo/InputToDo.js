@@ -3,24 +3,19 @@ import { Card, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 
 class InputToDo extends Component {
   state = {
-    newInput: {
-      id: '',
-      desc: '',
-      isComplete: false
-    }
+    desc: ''
   };
   handleClick = e => {
     e.preventDefault();
-    this.props.addItem(this.state.newInput);
+    this.props.addItem({
+      id: Date.now(),
+      desc: this.state.desc,
+      isComplete: false
+    });
   };
   handelChange = e =>
     this.setState({
-      ...this.state,
-      newInput: {
-        ...this.state.newInput,
-        id: Date.now(),
-        desc: e.target.value
-      }
+      desc: e.target.value
     });
   render() {
     return (
